@@ -1,37 +1,71 @@
 #include <iostream>
 using namespace std;
-int main()
-{   //1
-    double R1, R2, R3;
-    std::cout << "Введите сопротивление R1: ";
-    std::cin >> R1;
-    std::cout << "Введите сопротивление R2: ";
-    std::cin >> R2;
-    std::cout << "Введите сопротивление R3: ";
-    std::cin >> R3;
+int main() {
+    setlocale(LC_ALL, "rus");
+    //1
+    int number;
+    cout << "Введите шестизначное число: ";
+    cin >> number;
 
-    double R0 = 1 / (1 / R1 + 1 / R2 + 1 / R3);
-    std::cout << "Значение сопротивления R0: " << R0;
-//2
-    const double PI = 3.14159;
-    double L;
-    cout << "Введите длину окружности: ";
-    cin >> L;
+    if (number < 100000 || number > 999999) {
+        cout << "Ошибка! Введите шестизначное число." << endl;
+    }
+    else {
+        int sum_first_half = 0, sum_second_half = 0;
+        int temp = number;
 
-    double R = L / (2 * PI);
-    double S = PI * pow(R, 2);
+        for (int i = 0; i < 3; i++) {
+            sum_first_half += temp % 10;
+            temp /= 10;
+        }
 
-    cout << "Радиус круга: " << R << endl;
-    cout << "Площадь круга: " << S << endl;
-   //3
-    double V, T, A;
-    cout << "V = ";
-    cin >> V;
-    cout << "T = ";
-    cin >> T;
-    cout << "A = ";
-    cin >> A;
-    double S = V * T + (A * T * T) / 2;
-    cout << "S = " << S << "\n";
+        for (int i = 0; i < 3; i++) {
+            sum_second_half += temp % 10;
+            temp /= 10;
+        }
+
+        if (sum_first_half == sum_second_half) {
+            cout << "Введенное число - счастливое!" << endl;
+        }
+        else {
+            cout << "Введенное число не является счастливым." << endl;
+        }
+    }
+
+
+    //2
+    int num;
+    cout << "Введите четырехзначное число: ";
+    cin >> num;
+
+    if (num < 1000 || num > 9999) {
+        cout << "Ошибка! Введите четырехзначное число." << endl;
+    }
+    else {
+        int firstTwoDigits = num / 100; // Получаем первые две цифры
+        int lastTwoDigits = num % 100;  // Получаем последние две цифры
+        int swappedNumber = lastTwoDigits * 100 + firstTwoDigits; // Меняем местами и складываем
+
+        cout << "Число с поменянными цифрами: " << swappedNumber << endl;
+    }
+    //3
+    int numbers[7];
+    cout << "Введите 7 целых чисел:" << endl;
+
+    // Ввод чисел
+    for (int i = 0; i < 7; i++) {
+        cin >> numbers[i];
+    }
+
+    // Находим максимальное число
+    int maxNumber = numbers[0];
+    for (int i = 1; i < 7; i++) {
+        if (numbers[i] > maxNumber) {
+            maxNumber = numbers[i];
+        }
+    }
+
+    // Вывод результата
+    cout << "Максимальное число: " << maxNumber << endl;
+
     return 0;
-}
