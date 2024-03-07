@@ -3,69 +3,80 @@ using namespace std;
 int main() {
     setlocale(LC_ALL, "rus");
     //1
-    int number;
-    cout << "Введите шестизначное число: ";
-    cin >> number;
+    int a;
+    int sum = 0;
 
-    if (number < 100000 || number > 999999) {
-        cout << "Ошибка! Введите шестизначное число." << endl;
+    cout << "Введите значение a: ";
+    cin >> a;
+
+    if (a < 1 || a > 500) {  // проверка допустимого диапазона для a
+        cout << "Значение a должно быть в диапазоне от 1 до 500" << endl;
     }
     else {
-        int sum_first_half = 0, sum_second_half = 0;
-        int temp = number;
-
-        for (int i = 0; i < 3; i++) {
-            sum_first_half += temp % 10;
-            temp /= 10;
+        for (int i = a; i <= 500; i++) {
+            sum += i;  // вычисление суммы
         }
-
-        for (int i = 0; i < 3; i++) {
-            sum_second_half += temp % 10;
-            temp /= 10;
-        }
-
-        if (sum_first_half == sum_second_half) {
-            cout << "Введенное число - счастливое!" << endl;
-        }
-        else {
-            cout << "Введенное число не является счастливым." << endl;
-        }
+        cout << "Сумма целых чисел от " << a << " до 500 равна: " << sum << endl;
     }
-
 
     //2
-    int num;
-    cout << "Введите четырехзначное число: ";
-    cin >> num;
+    int x, y, i;
+    float power;
+    power = 1;
 
-    if (num < 1000 || num > 9999) {
-        cout << "Ошибка! Введите четырехзначное число." << endl;
+    cout << "Введите значение X:\n";
+    cin >> x;
+
+    cout << "Введите значение Y:\n";
+    cin >> y;
+    if (y == 0)
+    {
+        power = 1;
     }
-    else {
-        int firstTwoDigits = num / 100; // Получаем первые две цифры
-        int lastTwoDigits = num % 100;  // Получаем последние две цифры
-        int swappedNumber = lastTwoDigits * 100 + firstTwoDigits; // Меняем местами и складываем
-
-        cout << "Число с поменянными цифрами: " << swappedNumber << endl;
-    }
-    //3
-    int numbers[7];
-    cout << "Введите 7 целых чисел:" << endl;
-
-    // Ввод чисел
-    for (int i = 0; i < 7; i++) {
-        cin >> numbers[i];
-    }
-
-    // Находим максимальное число
-    int maxNumber = numbers[0];
-    for (int i = 1; i < 7; i++) {
-        if (numbers[i] > maxNumber) {
-            maxNumber = numbers[i];
+    else
+    {
+        i = 1;
+        while (i <= abs(y))
+        {
+            power = power * x;
+            i = i + 1;
+        }
+        if (y < 0)
+        {
+            power = 1 / power;
         }
     }
+    cout << "Result = " << power;
 
-    // Вывод результата
-    cout << "Максимальное число: " << maxNumber << endl;
+    //3
+    float result;
+    result = 0;
+    for (int i = 1; i <= 1000; i++)
+    {
+        result = result + i;
+    }
+    result = result / 1000;
+    cout << "Result = " << result;
 
-    return 0;
+    //4
+    int b, s, l;
+
+    s = 1;
+
+    cin >> b;
+
+    for (l = b; l <= 20; l++)
+
+    {
+
+
+
+        s = s * l;
+
+    }
+
+
+
+    cout << " proizvedenie = " << s;
+}
+  
