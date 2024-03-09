@@ -3,46 +3,89 @@ using namespace std;
 //1
 int main() {
     setlocale(LC_ALL, "rus");
-    int inputSeconds;
-    cout << "Введите количество секунд: ";
-    cin >> inputSeconds;
+    int number;
+    cout << "Введите число:";
+    cin >> number;
 
-    int hours = inputSeconds / 3600;
-    int minutes = (inputSeconds % 3600) / 60;
-    int seconds = inputSeconds % 60;
+    int countDigits = 0;
+    int sumDigits = 0;
+    int countZeros = 0;
 
-    cout << "Часы: " << hours << ", Минуты: " << minutes << ", Секунды: " << seconds << endl;
+    int temp = number;
+    while (temp != 0) {
+        countDigits++;
+        sumDigits += temp % 10;
+        temp /= 10;
+    }
+    double avarage = static_cast<double>(sumDigits) / countDigits;
+
+    temp = number;
+    while (temp != 0) {
+        if (temp % 10 == 0) {
+            countZeros++;
+
+
+        }
+        temp /= 10;
+
+    }
+    cout << "Кол-во цифр:" << countDigits << endl;
+    cout << "Сумма цифр:" << sumDigits << endl;
+    cout << "Среднее арифметическое:" << avarage << endl;
+    cout << "Кол-во нулей:" << countZeros << endl;
+
     //2
-    double inputNumber;
-
-    cout << "Введите дробное число: ";
-
-    cin >> inputNumber;
-
-
-    int dollars = inputNumber;
-
-    int cents = (inputNumber - dollars) * 100;
-
-
-    cout << "В денежном формате: " << dollars << " долларов и " << cents << " центов" << endl;
-
-    //3
-    int inputDays;
-
-    cout << "Введите количество дней: ";
-
-    cin >> inputDays;
-
-
-    int weeks = inputDays / 7; // Вычисляем количество недель
-
-    int remainingDays = inputDays % 7; // Находим оставшиеся дни
-
-
-    cout << "Полных недель: " << weeks << endl;
-
-    cout << "Оставшихся дней: " << remainingDays << endl;
-
-    return 0;
+    int cellSize;
+    cout << "Введите размер клетки:\n";
+    cin >> cellSize;
+    for (int i = 0; i < 8; i++)
+    {
+        if (i % 2 == 0)
+        {
+            for (int m = 0; m < cellSize; m++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (j % 2 == 0)
+                    {
+                        for (int k = 0; k < cellSize; k++)
+                        {
+                            cout << "*";
+                        }
+                    }
+                    else
+                    {
+                        for (int k = 0; k < cellSize; k++)
+                        {
+                            cout << "-";
+                        }
+                    }
+                }
+                cout << "\n";
+            }
+        }
+        else {
+            for (int m = 0; m < cellSize; m++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if (j % 2 == 0)
+                    {
+                        for (int k = 0; k < cellSize; k++)
+                        {
+                            cout << "-";
+                        }
+                    }
+                    else
+                    {
+                        for (int k = 0; k < cellSize; k++)
+                        {
+                            cout << "*";
+                        }
+                    }
+                }
+                cout << "\n";
+            }
+        }
+    }
 }
