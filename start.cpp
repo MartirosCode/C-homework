@@ -1,82 +1,100 @@
 #include <iostream>
 using namespace std;
 int main() {
+
     setlocale(LC_ALL, "rus");
     //1
-    int a;
-    int sum = 0;
+    const int size = 20;
+    int arr[size];
+    int min, max;
 
-    cout << "Введите значение a: ";
-    cin >> a;
-
-    if (a < 1 || a > 500) {  // проверка допустимого диапазона для a
-        cout << "Значение a должно быть в диапазоне от 1 до 500" << endl;
+    // Заполнение массива случайными числами
+    for (int i = 0; i < size; i++) {
+        arr[i] = rand() % 100; // генерируем случайное число от 0 до 99
     }
-    else {
-        for (int i = a; i <= 500; i++) {
-            sum += i;  // вычисление суммы
+
+    // Нахождение минимального и максимального элементов
+    min = arr[0];
+    max = arr[0];
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
         }
-        cout << "Сумма целых чисел от " << a << " до 500 равна: " << sum << endl;
+        if (arr[i] > max) {
+            max = arr[i];
+        }
     }
+
+    // Вывод результата
+    cout << "Массив: ";
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Минимальный элемент: " << min << endl;
+    cout << "Максимальный элемент: " << max << endl;
 
     //2
-    int x, y, i;
-    float power;
-    power = 1;
+    const int SIZE = 10;
+    int ar[SIZE];
+    int lowerBound, sum = 0;
 
-    cout << "Введите значение X:\n";
-    cin >> x;
+    cout << "Введите нижнюю границу: ";
+    cin >> lowerBound;
 
-    cout << "Введите значение Y:\n";
-    cin >> y;
-    if (y == 0)
-    {
-        power = 1;
+    // Заполнение массива случайными числами
+    for (int i = 0; i < SIZE; i++) {
+        ar[i] = rand() % 100; // генерируем случайное число от 0 до 99
     }
-    else
-    {
-        i = 1;
-        while (i <= abs(y))
-        {
-            power = power * x;
-            i = i + 1;
-        }
-        if (y < 0)
-        {
-            power = 1 / power;
+
+    // Подсчет суммы элементов массива, меньших lowerBound
+    for (int i = 0; i < SIZE; i++) {
+        if (ar[i] < lowerBound) {
+            sum += ar[i];
         }
     }
-    cout << "Result = " << power;
 
+    // Вывод результата
+    cout << "Массив: ";
+    for (int i = 0; i < SIZE; i++) {
+        cout << ar[i] << " ";
+    }
+    cout << endl;
+
+    cout << "Сумма элементов меньше " << lowerBound << ": " << sum << endl;
     //3
-    float result;
-    result = 0;
-    for (int i = 1; i <= 1000; i++)
-    {
-        result = result + i;
-    }
-    result = result / 1000;
-    cout << "Result = " << result;
+    const int months = 12;
+    double profits[months];
 
-    //4
-    int b, s, l;
-
-    s = 1;
-
-    cin >> b;
-
-    for (l = b; l <= 20; l++)
-
-    {
-
-
-
-        s = s * l;
-
+    // Ввод прибыли за каждый месяц
+    for (int i = 0; i < months; ++i) {
+        cout << "Введите прибыль за " << i + 1 << "-й месяц: ";
+        cin >> profits[i];
     }
 
+    int startMonth, endMonth;
+    cout << "Введите начальный и конечный месяцы диапазона: ";
+    cin >> startMonth >> endMonth;
 
+    double maxProfit = profits[startMonth - 1];
+    double minProfit = profits[startMonth - 1];
+    int maxMonth = startMonth;
+    int minMonth = startMonth;
 
-    cout << " proizvedenie = " << s;
+    // Поиск максимальной и минимальной прибыли в указанном диапазоне
+    for (int i = startMonth; i <= endMonth; ++i) {
+        if (profits[i - 1] > maxProfit) {
+            maxProfit = profits[i - 1];
+            maxMonth = i;
+        }
+        if (profits[i - 1] < minProfit) {
+            minProfit = profits[i - 1];
+            minMonth = i;
+        }
+    }
+
+    cout << "Месяц с максимальной прибылью: " << maxMonth << endl;
+    cout << "Месяц с минимальной прибылью: " << minMonth << endl;
+
 }
-  
