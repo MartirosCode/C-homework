@@ -1,100 +1,60 @@
 #include <iostream>
 using namespace std;
-int main() {
+//void cocktailSort(int arr[], int n) {
+   // bool swapped = true;
+   // int start = 0;
+   // int end = n - 1;
 
-    setlocale(LC_ALL, "rus");
-    //1
-    const int size = 20;
-    int arr[size];
-    int min, max;
+   // while (swapped) {
+       // swapped = false;
 
-    // Заполнение массива случайными числами
-    for (int i = 0; i < size; i++) {
-        arr[i] = rand() % 100; // генерируем случайное число от 0 до 99
+       // for (int i = start; i < end; ++i) {
+         //   if (arr[i] > arr[i + 1]) {
+        //        swap(arr[i], arr[i + 1]);
+       //         swapped = true;
+      //      }
+      //  }
+
+       // if (!swapped) {
+       //     break;
+       // }
+
+      //  swapped = false;
+       // --end;
+
+       // for (int i = end - 1; i >= start; --i) {
+         //   if (arr[i] > arr[i + 1]) {
+          //      swap(arr[i], arr[i + 1]);
+         //       swapped = true;
+         //   }
+      //  }
+
+      //  ++start;
+    //}
+//}
+
+void countingSort(int arr[], int n) {
+    int max = *max_element(arr, arr + n);
+    int min = *min_element(arr, arr + n);
+    int range = max - min + 1;
+
+    int count[range] = { 0 };
+    int output[n];
+
+    for (int i = 0; i < n; ++i) {
+        count[arr[i] - min]++;
     }
 
-    // Нахождение минимального и максимального элементов
-    min = arr[0];
-    max = arr[0];
-    for (int i = 1; i < size; i++) {
-        if (arr[i] < min) {
-            min = arr[i];
-        }
-        if (arr[i] > max) {
-            max = arr[i];
-        }
+    for (int i = 1; i < range; ++i) {
+        count[i] += count[i - 1];
     }
 
-    // Вывод результата
-    cout << "Массив: ";
-    for (int i = 0; i < size; i++) {
-        cout << arr[i] << " ";
-    }
-    cout << endl;
-
-    cout << "Минимальный элемент: " << min << endl;
-    cout << "Максимальный элемент: " << max << endl;
-
-    //2
-    const int SIZE = 10;
-    int ar[SIZE];
-    int lowerBound, sum = 0;
-
-    cout << "Введите нижнюю границу: ";
-    cin >> lowerBound;
-
-    // Заполнение массива случайными числами
-    for (int i = 0; i < SIZE; i++) {
-        ar[i] = rand() % 100; // генерируем случайное число от 0 до 99
+    for (int i = n - 1; i >= 0; --i) {
+        output[count[arr[i] - min] - 1] = arr[i];
+        count[arr[i] - min]--;
     }
 
-    // Подсчет суммы элементов массива, меньших lowerBound
-    for (int i = 0; i < SIZE; i++) {
-        if (ar[i] < lowerBound) {
-            sum += ar[i];
-        }
+    for (int i = 0; i < n; ++i) {
+        arr[i] = output[i];
     }
-
-    // Вывод результата
-    cout << "Массив: ";
-    for (int i = 0; i < SIZE; i++) {
-        cout << ar[i] << " ";
-    }
-    cout << endl;
-
-    cout << "Сумма элементов меньше " << lowerBound << ": " << sum << endl;
-    //3
-    const int months = 12;
-    double profits[months];
-
-    // Ввод прибыли за каждый месяц
-    for (int i = 0; i < months; ++i) {
-        cout << "Введите прибыль за " << i + 1 << "-й месяц: ";
-        cin >> profits[i];
-    }
-
-    int startMonth, endMonth;
-    cout << "Введите начальный и конечный месяцы диапазона: ";
-    cin >> startMonth >> endMonth;
-
-    double maxProfit = profits[startMonth - 1];
-    double minProfit = profits[startMonth - 1];
-    int maxMonth = startMonth;
-    int minMonth = startMonth;
-
-    // Поиск максимальной и минимальной прибыли в указанном диапазоне
-    for (int i = startMonth; i <= endMonth; ++i) {
-        if (profits[i - 1] > maxProfit) {
-            maxProfit = profits[i - 1];
-            maxMonth = i;
-        }
-        if (profits[i - 1] < minProfit) {
-            minProfit = profits[i - 1];
-            minMonth = i;
-        }
-    }
-
-    cout << "Месяц с максимальной прибылью: " << maxMonth << endl;
-    cout << "Месяц с минимальной прибылью: " << minMonth << endl;
-
 }
