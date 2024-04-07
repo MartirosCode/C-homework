@@ -27,3 +27,15 @@ int linearSearch(int arr[], int size, int key) {
 }
 
 
+int main() {
+    // Пример использования для задания 1
+    std::cout << "123321 is lucky number: " << isLuckyNumber(123321) << std::endl;  // Выведет 1 (true)
+    std::cout << "123456 is lucky number: " << isLuckyNumber(123456) << std::endl;  // Выведет 0 (false)
+
+    // Пример использования для задания 2
+    int numbers[] = { 3, 12, 4, 7, 9, 1 };
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+    int searchKey = 4;
+    std::cout << "Index of key 4: " << linearSearch(numbers, size, searchKey) << std::endl;  // Выведет 2 (индекс элемента 4)
+    return 0;
+}
